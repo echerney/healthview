@@ -9,3 +9,4 @@ As a user I should be able to check off appointments as clients come in and take
 As a user I should be able to see visual data showing me trends of diagnosis related to gender and race
 
 ##Wire frames
+<img src="healthview/Screen Shot 2016-08-05 at 9.10.06 AM.png">
