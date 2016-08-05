@@ -13,4 +13,5 @@ As a user I should be able to see visual data showing me trends of diagnosis rel
 
 ##Wire frames
 <img src="https://github.com/echerney/healthview/blob/master/Screen%20Shot%202016-08-05%20at%209.10.06%20AM.png?raw=true">
+<img src="https://github.com/echerney/healthview/blob/master/Screen%20Shot%202016-08-05%20at%2012.01.01%20PM.png?raw=true">
 <img src="https://github.com/echerney/healthview/blob/master/Screen%20Shot%202016-08-05%20at%209.51.54%20AM.png?raw=true">
