@@ -1,6 +1,9 @@
 # healthview
 
-The purpose of this app is to give mental health practitioners a space to schedule appointments and take notes while retaining data and charting trends related to patient diagnoses.
+The purpose of this app is to give mental health practitioners a space to schedule appointments and take notes while retaining data and charting trends related to patient diagnoses, hopefully identifying and helping to eliminate bias in the diagnosis process.
+
+##Gameplan
+My MVP will be a basic note taking app where a user (practitioner) would be able to save session notes about their patients. The practitioner would also be able to see and edit a patient's page with their diagnosis, personal information and all session notes for that patient. <br>A practitioner would also be able to see statistics on all of their patients to see possible inherent bias in their assessment. The data would be broken down by gender and race, since there are many studies that find disproportionate diagnoses within these characteristics, even when 2 patients are exhibiting the same symptoms. This product would likely be marketed to hospital administrators hoping to eliminate biases from their employee's work. I'm interested in using Node as the stack, and researching data visualization libraries like Chart.js and D3. Because I want my data to have a flexible structure and be able to be rendered quickly (with less of a concern about absolute accuracy) it seems that mongoDB is the best database to use for my patient database. 
 
 ##User Stories
 As a guest I should be able to create an account and login, but have no other access to features<br>
