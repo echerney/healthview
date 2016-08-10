@@ -17,7 +17,7 @@ app.use(session({
   saveUninitialized: true,
   resave: true,
   secret: "authenticate!",
-  cookie: {maxAge:600000}
+  cookie: {maxAge:60000000000}
 }));
 
 app.set('view engine', 'ejs');

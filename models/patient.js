@@ -2,7 +2,6 @@ const { MongoClient } = require('mongodb');
 const dbConnection = 'mongodb://localhost:27017/healthview';
 
 function createPatient(req, res, next) {
-  console.log(req.session.user)
   MongoClient.connect(dbConnection, function(err, db) {
     let patientInfo = {
       name: req.body.name,
@@ -23,4 +22,45 @@ function createPatient(req, res, next) {
   })
 }
 
-module.exports = { createPatient }
+function sortPatients(req, res, next) {
+  if (!req.session.user) {
+    console.log('yo, gotta log in first')
+    next();
+  } else {
+    let practitioner = req.session.user.name;
+    console.log(practitioner);
+    MongoClient.connect(dbConnection, function(err, db) {
+      db.collection('patients')
+        .find({practitioner: practitioner})
+        .toArray(function(err, data){
+          if (err) throw err
+          console.log(data.length)
+          res.patientObject = data
+          next();
+      });
+    })
+  }
+}
+
+function findPatient(req, res, next) {
+  if (!req.session.user) {
+    console.log('yo, gotta log in!')
+    next();
+  } else {
+    let patientID = 'ObjectId("' + req.params.id + '")';
+    console.log(patientID)
+    MongoClient.connect(dbConnection, function(err, db) {
+      db.collection('patients')
+      .find({"_id" : patientID})
+      next();
+      // .toArray(function(err, data){
+      //     if (err) throw err
+      //     console.log(data.length)
+      //     res.patientInfo = data
+      //     next();
+      // });
+    })
+  }
+}
+
+module.exports = { createPatient, sortPatients, findPatient }

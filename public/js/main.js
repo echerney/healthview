@@ -22,5 +22,15 @@ $(document).ready(function() {
     $('.login-user').hide()
     $('#login-button').show()
   })
+
+  //form to search
+  $('#searchForm').submit(e=>{
+    e.preventDefault()
+    $.get('/patient/search')
+      .done(data=>{
+        console.log(data)
+        // $('#result').append($('<p>'+data.message+'</p>'))
+      })
+  })
 });
 

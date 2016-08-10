@@ -1,10 +1,9 @@
 const router = require('express').Router();
-const { createPatient } = require('../models/patient');
+const { createPatient, findPatient } = require('../models/patient');
 
-router.get('/:id', function(req,res){
-  res.send(req.params.id)
+router.get('/search', (req,res)=>{
+  res.json({message: 'yo'})
 })
-
 // router.put('/:id', function(req,res){
 //   //edit that user, will be on the submit on the user page
 // })
@@ -19,6 +18,10 @@ router.get('/new', function(req,res) {
 
 router.post('/new', createPatient, function(req,res){
   res.redirect('../')
+})
+
+router.get('/:id', findPatient, function(req,res){
+  res.render('patient/patientview', {patientInfo: res.patientInfo, user: req.session.user} )
 })
 
 module.exports = router;

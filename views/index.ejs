@@ -15,6 +15,11 @@
       <h2></h2>
       <button id="schedule-modal-button">Schedule an Appointment</button>
       <a href="/patient/new"><button id="create-user">Add a Patient</button></a>
+      <% if (patientObject) { %>
+        <% patientObject.forEach(function(patient){ %>
+          <a href="/patient/<%=patient._id%>" ><p><%= patient.name %></p></a>
+        <% }) %>
+      <% } %>
     </div>
     <% } %>
 </body>
