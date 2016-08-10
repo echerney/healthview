@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<% include ../partials/head %>
+</head>
+<body>
+<% if(!user){ %>
+  <% include ../partials/login %>
+<% } %>
+<% if(user){ %>
+  <% include ../partials/userbar %>
+  <h1>ADD PATIENT PAGE</h1>
+    <form action="/patient/new" method='post'>
+      <label class="" for="">Name:</label>
+      <input class="" type="text" name='name'><br>
+      <label class="" for="">Phone number:</label>
+      <input class="" type="text" name='phone'><br>
+      <label class="" for="">Gender:</label>
+      <select name="Gender">
+        <option value="female">Female</option>
+        <option value="male">Male</option>
+      </select><br>
+      <label class="" for="">Race</label>
+      <select name="" id="">
+        <option value="">Asian</option>
+        <option value="">Black</option>
+        <option value="">Caribbean</option>
+        <option value="">Hispanic</option>
+        <option value="">Native American</option>
+        <option value="">Pacific Islander</option>
+        <option value="">White, non-hispanic</option>
+      </select><br>
+      <label class="" for="">Diagnosis</label>
+      <input class="" type="text" name='diagnosis'><br>
+      <input class="" type="submit" value='Add Patient'>
+    </form>
+  <% } %>
+</body>
+</html>

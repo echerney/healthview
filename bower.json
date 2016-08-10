@@ -1,0 +1,20 @@
+{
+  "name": "healthview",
+  "description": "The purpose of this app is to give mental health practitioners a space to schedule appointments and take notes while retaining data and charting trends related to patient diagnoses, hopefully identifying and helping to eliminate bias in the diagnosis process.",
+  "main": "server.js",
+  "authors": [
+    "Erin"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/echerney/healthview",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.1.0"
+  }
+}

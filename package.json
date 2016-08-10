@@ -1,0 +1,33 @@
+{
+  "name": "healthview",
+  "version": "1.0.0",
+  "description": "The purpose of this app is to give mental health practitioners a space to schedule appointments and take notes while retaining data and charting trends related to patient diagnoses, hopefully identifying and helping to eliminate bias in the diagnosis process.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/echerney/healthview.git"
+  },
+  "author": "Erin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/echerney/healthview/issues"
+  },
+  "homepage": "https://github.com/echerney/healthview#readme",
+  "dependencies": {
+    "bcrypt": "^0.8.7",
+    "body-parser": "^1.15.2",
+    "ejs": "^2.5.1",
+    "express": "^4.14.0",
+    "express-session": "^1.14.0",
+    "method-override": "^2.3.6",
+    "mongo": "^0.1.0",
+    "mongodb": "^2.2.5",
+    "morgan": "^1.7.0",
+    "path": "^0.12.7",
+    "pg-promise": "^5.2.7"
+  }
+}
