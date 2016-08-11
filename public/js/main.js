@@ -7,7 +7,7 @@ $(document).ready(function() {
   let month = date.getMonth()
   let day = date.getDate()
   let year = date.getFullYear()
-  $('h2').text('<   ' + month + '/' + day + '/' + year + '   >')
+  $('h2').addClass('page-date').text('<   ' + month + '/' + day + '/' + year + '   >')
 
   $('#login-button').click(function(){
     $('.login-user').toggle();
@@ -24,13 +24,58 @@ $(document).ready(function() {
   })
 
   //form to search
-  $('#searchForm').submit(e=>{
+  $('#searchForm').submit(function(e){
     e.preventDefault()
-    $.get('/patient/search')
-      .done(data=>{
-        console.log(data)
-        // $('#result').append($('<p>'+data.message+'</p>'))
-      })
+    let name = $('#patientSearch').val()
+    console.log(name)
+    $.ajax({
+      url: '/patient/search',
+      type: 'GET',
+      dataType: 'json',
+      data: { name: name},
+    })
+    .done(function(results) {
+      console.log(results);
+    })
+    .fail(function() {
+      console.log("error");
+    })
   })
+
+
+  //PATIENT VIEW PAGE
+
+  //scheduling modal
+  $('#schedule-button').click(function(){
+    console.log('clicked')
+    $('.schedule-modal').show()
+  })
+
+  $('.schedule-close').click(function(){
+    $('.schedule-modal').hide()
+  })
+
+//ajax to add appointment
+  $('#schedule-form').submit(function(e){
+    e.preventDefault()
+    let param = location.pathname.split('/')[2]
+    console.log(param)
+    let date = $('#schedule-date').val()
+    console.log(date)
+    $.ajax({
+      url: '/patient/' + param,
+      type: 'PUT',
+      data: {
+        date: date
+      },
+    })
+    .fail(function(err) {
+      console.log(err);
+    })
+    .done(function() {
+      document.location.reload(true);
+    })
+  })
+
 });
 

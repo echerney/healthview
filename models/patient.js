@@ -1,5 +1,6 @@
 const { MongoClient } = require('mongodb');
 const dbConnection = 'mongodb://localhost:27017/healthview';
+const { ObjectId } = require('mongodb')
 
 function createPatient(req, res, next) {
   MongoClient.connect(dbConnection, function(err, db) {
@@ -27,6 +28,9 @@ function sortPatients(req, res, next) {
     console.log('yo, gotta log in first')
     next();
   } else {
+    let today = new Date()
+    let dateFormatted = today.getMonth() + '/' + today.getDate() + '/' + today.getFullYear()
+    console.log(dateFormatted)
     let practitioner = req.session.user.name;
     console.log(practitioner);
     MongoClient.connect(dbConnection, function(err, db) {
@@ -47,20 +51,49 @@ function findPatient(req, res, next) {
     console.log('yo, gotta log in!')
     next();
   } else {
-    let patientID = 'ObjectId("' + req.params.id + '")';
+    let patientID = req.params.id;
     console.log(patientID)
     MongoClient.connect(dbConnection, function(err, db) {
       db.collection('patients')
-      .find({"_id" : patientID})
-      next();
-      // .toArray(function(err, data){
-      //     if (err) throw err
-      //     console.log(data.length)
-      //     res.patientInfo = data
-      //     next();
-      // });
+      .findOne({_id : ObjectId(patientID)},
+        function(err, data){
+          if (err) throw err
+          console.log(data)
+          res.patientInfo = data
+          next();
+      });
     })
   }
 }
 
-module.exports = { createPatient, sortPatients, findPatient }
+function searchPatients(req, res, next) {
+  const name = req.query.name;
+  const practitioner = req.session.user.name;
+  MongoClient.connect(dbConnection, function(err, db) {
+    db.collection('patients')
+    .find({name:{ $regex: name, $options: 'i'}, practitioner: practitioner})
+    .toArray(function(err,data){
+      if (err) throw err
+      console.log(data)
+      res.foundPatients = data
+      next();
+    })
+  })
+}
+
+function addAppointment(req, res, next) {
+  const practitioner = req.session.user.name;
+  const patientID = req.params.id
+  const newAppt = req.body.date
+  MongoClient.connect(dbConnection, function(err, db) {
+    db.collection('patients')
+      .update({_id : ObjectId(patientID), practitioner: practitioner},
+      { $addToSet:
+        {appointments: newAppt}
+      }
+    )
+  })
+  next();
+}
+
+module.exports = { createPatient, sortPatients, findPatient, searchPatients, addAppointment }

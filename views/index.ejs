@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<% include /partials/head %>
+<% include partials/head %>
 </head>
 <body>
     <% if(!user){ %>
@@ -13,7 +13,6 @@
     <h1>Welcome, <%= user.name %></h1>
     <div>
       <h2></h2>
-      <button id="schedule-modal-button">Schedule an Appointment</button>
       <a href="/patient/new"><button id="create-user">Add a Patient</button></a>
       <% if (patientObject) { %>
         <% patientObject.forEach(function(patient){ %>
@@ -22,5 +21,6 @@
       <% } %>
     </div>
     <% } %>
+
 </body>
 </html>

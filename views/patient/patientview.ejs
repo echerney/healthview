@@ -1,12 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title></title>
-  <link rel="stylesheet" href="">
+<% include ../partials/head %>
 </head>
 <body>
-  <p> <%= patientInfo %></p>
+  <p>Name: <%= patientInfo.name %></p>
+  <p>Phone: <%= patientInfo.phone %></p>
+  <p>Diagnosis: <%= patientInfo.diagnosis %></p>
+  <p>Appointments:</p>
+  <% patientInfo.appointments.forEach(function(appt){ %>
+    <p><%= appt %></p>
+  <% }) %>
+  <button id="schedule-button">Schedule an Appointment</button>
+  <div class="schedule-modal">
+    <div class="schedule-modal-content">
+      <span class="schedule-close">x</span>
+      <h3>Schedule appointment for <%= patientInfo.name %></h3>
+      <form id="schedule-form" action="" method="">
+        <label for="">Date:</label>
+        <input id="schedule-date" type="text" name="appointment">
+        <input type="submit" value="Make an Appointment">
+      </form>
+    </div>
+  </div>
 </body>
 </html>

@@ -1,12 +1,14 @@
 const router = require('express').Router();
-const { createPatient, findPatient } = require('../models/patient');
+const { createPatient, findPatient, searchPatients, addAppointment } = require('../models/patient');
 
-router.get('/search', (req,res)=>{
-  res.json({message: 'yo'})
+const errorHandler = function(err, req, res, next){
+  console.log(err.stack);
+  res.status(404).render('index')
+}
+
+router.get('/search', searchPatients, (req,res)=>{
+  res.json({patients: res.foundPatients})
 })
-// router.put('/:id', function(req,res){
-//   //edit that user, will be on the submit on the user page
-// })
 
 // router.delete('/:id', function(req,res){
 //   //gets rid of one patient
@@ -14,14 +16,18 @@ router.get('/search', (req,res)=>{
 
 router.get('/new', function(req,res) {
   res.render('patient/new', {user: req.session.user})
-})
+}, errorHandler)
 
-router.post('/new', createPatient, function(req,res){
+router.post('/new', createPatient, function(req,res) {
   res.redirect('../')
-})
+}, errorHandler)
 
-router.get('/:id', findPatient, function(req,res){
+router.get('/:id', findPatient, function(req,res) {
   res.render('patient/patientview', {patientInfo: res.patientInfo, user: req.session.user} )
-})
+}, errorHandler)
+
+router.put('/:id', addAppointment, function(req,res) {
+  res.send('complete');
+}, errorHandler)
 
 module.exports = router;
