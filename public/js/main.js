@@ -4,7 +4,7 @@ $(document).ready(function() {
 
 //HOME PAGE
   let date = new Date()
-  let month = date.getMonth()
+  let month = date.getMonth() + 1
   let day = date.getDate()
   let year = date.getFullYear()
   $('h2').addClass('page-date').text('<   ' + month + '/' + day + '/' + year + '   >')
@@ -36,6 +36,8 @@ $(document).ready(function() {
     })
     .done(function(results) {
       console.log(results);
+      console.log('end of the ajax call')
+      let patients = results
     })
     .fail(function() {
       console.log("error");

@@ -29,16 +29,15 @@ function sortPatients(req, res, next) {
     next();
   } else {
     let today = new Date()
-    let dateFormatted = today.getMonth() + '/' + today.getDate() + '/' + today.getFullYear()
+    let dateFormatted = (today.getMonth() + 1) + '/' + today.getDate() + '/' + today.getFullYear()
     console.log(dateFormatted)
     let practitioner = req.session.user.name;
     console.log(practitioner);
     MongoClient.connect(dbConnection, function(err, db) {
       db.collection('patients')
-        .find({practitioner: practitioner})
+        .find({practitioner: practitioner, appointments: {$in: [dateFormatted]}})
         .toArray(function(err, data){
           if (err) throw err
-          console.log(data.length)
           res.patientObject = data
           next();
       });
