@@ -23,7 +23,7 @@ function createPatient(req, res, next) {
   })
 }
 
-function sortPatients(req, res, next) {
+function getAppointments(req, res, next) {
   if (!req.session.user) {
     console.log('yo, gotta log in first')
     next();
@@ -95,4 +95,61 @@ function addAppointment(req, res, next) {
   next();
 }
 
-module.exports = { createPatient, sortPatients, findPatient, searchPatients, addAppointment }
+function checkPatientIn(req, res, next) {
+  console.log('got here')
+  const practitioner = req.session.user.name;
+  const patientID = req.body.patientID
+  const appt = req.body.date
+  MongoClient.connect(dbConnection, function(err, db){
+    db.collection('patients')
+    .update({_id : ObjectId(patientID), practitioner: practitioner},
+    {
+      $pull: {appointments: appt},
+      $set: {needsNotes : true}
+    })
+  })
+  next();
+}
+
+function getAllNeedNotes(req, res, next) {
+  if (!req.session.user) {
+    console.log('yo, gotta log in!')
+    next();
+  } else {
+    console.log('getting this far')
+    const practitioner = req.session.user.name;
+    MongoClient.connect(dbConnection, function(err, db) {
+      db.collection('patients')
+        .find({ needsNotes : true , practitioner: practitioner})
+        .toArray(function(err,data){
+        if (err) throw err
+        res.allNeedNotes = data
+        console.log(res.allNeedNotes)
+        next();
+      })
+    })
+    console.log('now I got this far')
+  }
+}
+
+function addNote(req, res, next) {
+  if (!req.session.user) {
+    console.log('yo, gotta log in!')
+    next();
+  } else {
+    const practitioner = req.session.user.name;
+    const patientID = req.body.patientID;
+    const note = req.body.note;
+    MongoClient.connect(dbConnection, function(err, db) {
+      db.collection('patients')
+        .update({_id : ObjectId(patientID), practitioner: practitioner}, {
+             $push: { notes: note },
+             $set: {needsNotes : false}
+        })
+    })
+    console.log('just above next')
+    next();
+  }
+}
+
+module.exports = { createPatient, getAppointments, findPatient, searchPatients, addAppointment, checkPatientIn, getAllNeedNotes, addNote }

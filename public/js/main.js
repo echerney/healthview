@@ -7,16 +7,16 @@ $(document).ready(function() {
   let month = date.getMonth() + 1
   let day = date.getDate()
   let year = date.getFullYear()
-  $('h2').addClass('page-date').text('<   ' + month + '/' + day + '/' + year + '   >')
+  $('h2').addClass('page-date').text(month + '/' + day + '/' + year)
 
-  $('#login-button').click(function(){
+  $('#login-button').click(function() {
     $('.login-user').toggle();
     $('#login-button').toggle();
     $('.create-user').hide();
     $('#create-button').show()
   })
 
-  $('#create-button').click(function(){
+  $('#create-button').click(function() {
     $('.create-user').toggle();
     $('#create-button').toggle();
     $('.login-user').hide()
@@ -24,7 +24,7 @@ $(document).ready(function() {
   })
 
   //form to search
-  $('#searchForm').submit(function(e){
+  $('#searchForm').submit(function(e) {
     e.preventDefault()
     let name = $('#patientSearch').val()
     console.log(name)
@@ -37,28 +37,85 @@ $(document).ready(function() {
     .done(function(results) {
       console.log(results);
       console.log('end of the ajax call')
-      let patients = results
+      let patients = results.patients
+      popSearchModal(patients);
     })
     .fail(function() {
       console.log("error");
     })
   })
 
+  //check in patient
+  $('.check-in-button').click(function() {
+    let patientID = $(this).attr('id')
+    let date = $('.page-date').text()
+    $.ajax({
+      url: '/patient/checkin',
+      type: 'PUT',
+      data:
+      {
+        patientID: patientID,
+        date: date
+      },
+    })
+    .done(function(results) {
+      document.location.reload(true);
+    })
+    .fail(function(a, b) {
+      console.log('a', a);
+      console.log('b', b);
+    })
+  });
+
+  //add note
+  $('.notes-form').submit(function(e) {
+    e.preventDefault();
+    let patientID = $('.notes-form').attr('id');
+    let note = $('#note-box').val();
+    $.ajax({
+      url: 'patient/addnote',
+      type: 'PUT',
+      data: {
+        patientID: patientID,
+        note: note
+      },
+    })
+    .done(function(results) {
+      console.log('the note was added!')
+      console.log(results);
+    })
+    .fail(function(a, b) {
+      console.log('a', a);
+      console.log('b', b);
+    })
+
+  })
+
+  //pop up note modal
+    $('.add-note-button').click(function() {
+      let id = $(this).attr('id')
+      $('.notes-modal').show()
+      $('.notes-form').attr('id', id)
+    })
+
+    $('.notes-close').click(function() {
+      $('.notes-modal').hide()
+    })
+
 
   //PATIENT VIEW PAGE
 
   //scheduling modal
-  $('#schedule-button').click(function(){
-    console.log('clicked')
+  $('#schedule-button').click(function() {
     $('.schedule-modal').show()
   })
 
-  $('.schedule-close').click(function(){
+  $('.schedule-close').click(function() {
     $('.schedule-modal').hide()
   })
 
 //ajax to add appointment
-  $('#schedule-form').submit(function(e){
+  $('#schedule-form').submit(function(e) {
     e.preventDefault()
     let param = location.pathname.split('/')[2]
     console.log(param)
@@ -80,4 +137,17 @@ $(document).ready(function() {
   })
 
 });
+
+function popSearchModal(pArray) {
+  $('.search-modal').show()
+  pArray.forEach(function(patient){
+    let nameLink ='<a href="/patient/' + patient._id + '"><p class="search-name">' + patient.name + '</p></a>';
+    $('.search-modal-content').append(nameLink);
+  })
+}
+
+
+
+
+
 

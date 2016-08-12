@@ -1,9 +1,10 @@
 const router = require('express').Router();
-const { sortPatients } = require('../models/patient');
+const { getAppointments, getAllNeedNotes } = require('../models/patient');
 
 
-router.get('/', sortPatients, function(req,res) {
-  res.render('index', {user: req.session.user, patientObject: res.patientObject});
+router.get('/', getAppointments, getAllNeedNotes, function(req,res) {
+  console.log('Route allNeedNotes: ',res.allNeedNotes);
+  res.render('index', {user: req.session.user, patientObject: res.patientObject, allNeedNotes: res.allNeedNotes});
 })
 
 module.exports = router;

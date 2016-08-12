@@ -9,18 +9,44 @@
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati quam labore laudantium qui tempore molestias nesciunt, ipsum maiores quasi, totam sunt ipsam, ex in earum voluptas itaque cumque modi! Doloribus.</p>
     <% include /partials/login %>
     <% } else { %>
-    <% include /partials/userbar %>
-    <h1>Welcome, <%= user.name %></h1>
-    <div>
-      <h2></h2>
-      <a href="/patient/new"><button id="create-user">Add a Patient</button></a>
-      <% if (patientObject) { %>
-        <% patientObject.forEach(function(patient){ %>
-          <a href="/patient/<%=patient._id%>" ><p><%= patient.name %></p></a>
-        <% }) %>
-      <% } %>
-    </div>
-    <% } %>
+      <% include /partials/userbar %>
+      <h1>Welcome, <%= user.name %></h1>
+      <div>
+        <a href="/patient/new"><button id="create-user">Add a Patient</button></a>
+        <h2></h2>
+        <button>Check Another Date</button>
+        <h3>Appointments:</h3>
+        <% if (patientObject) { %>
+          <% patientObject.forEach(function(patient){ %>
+            <a href="/patient/<%=patient._id%>" ><p class="check-in-name"><%= patient.name %></p></a>
+            <button class="check-in-button" id="<%= patient._id %>">Check in</button><br>
+          <% }) %>
+        <% } %>
 
+        <h3>Needs Notes:</h3>
+          <% if (allNeedNotes) { %>
+            <% allNeedNotes.forEach(function(patient){ %>
+              <a href="/patient/<%=patient._id%>" ><p class="add-note-name"><%= patient.name %></p></a>
+              <button class="add-note-button" id="<%= patient._id %>">Add a Note</button><br>
+            <% }) %>
+          <% } %>
+        </div>
+        <div class="notes-modal">
+          <div class="notes-modal-content">
+            <span class="notes-close">x</span>
+            <h3>Add note:</h3>
+            <form class="notes-form" action="" method="">
+              <label for="">Notes:</label>
+              <input id="note-box" type="text" name="add-note">
+              <input id="notes-submit" type="submit" value="Add Note to Chart">
+            </form>
+          </div>
+        </div>
+        <div class="search-modal">
+          <div class="search-modal-content">
+            <span class="search-close">x</span>
+          </div>
+        </div>
+    <% } %>
 </body>
 </html>

@@ -8,9 +8,13 @@
   <p>Phone: <%= patientInfo.phone %></p>
   <p>Diagnosis: <%= patientInfo.diagnosis %></p>
   <p>Appointments:</p>
-  <% patientInfo.appointments.forEach(function(appt){ %>
+  <% if (patientInfo.appointments) {patientInfo.appointments.forEach(function(appt){ %>
     <p><%= appt %></p>
-  <% }) %>
+  <% })} %>
+  <p>Notes:</p>
+  <% if (patientInfo.notes) {patientInfo.notes.forEach(function(note){ %>
+    <p><%= note %></p>
+  <% })} %>
   <button id="schedule-button">Schedule an Appointment</button>
   <div class="schedule-modal">
     <div class="schedule-modal-content">
