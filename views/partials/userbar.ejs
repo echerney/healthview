@@ -1,12 +1,16 @@
-<header class="userbar">
-  <form id="searchForm" >
-    <input id="patientSearch" type="text" name="patientName" placeholder="Search for a Patient">
-    <input type="submit" value="search">
+<div class="userbar">
+  <a href='/'><h1 id="home-icon">Healthview</h1></a>
+  <form id="search-form" >
+    <input id="patient-search" type="text" name="patient-name" placeholder="Search for a Patient">
+    <input type="submit" id="search-button" value="Search">
   </form>
-  <form action="/user/logout?_method=DELETE" method='post'>
-    <input type="submit" value="logout">
+  <button id="data-button">View your Data</button>
+  <form id="logout-button" action="/user/logout?_method=DELETE" method='post'>
+    <input type="submit" value="Logout">
   </form>
-
-  <div id="results">
+</div>
+<div class="search-modal">
+  <div class="search-modal-content">
+    <span class="search-close">x</span>
   </div>
-</header>
+</div>

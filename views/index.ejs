@@ -11,40 +11,43 @@
     <% } else { %>
       <% include /partials/userbar %>
       <h1>Welcome, <%= user.name %></h1>
-      <div>
+      <div class="main-container">
         <a href="/patient/new"><button id="create-user">Add a Patient</button></a>
-        <h2></h2>
-        <button>Check Another Date</button>
-        <h3>Appointments:</h3>
-        <% if (patientObject) { %>
-          <% patientObject.forEach(function(patient){ %>
-            <a href="/patient/<%=patient._id%>" ><p class="check-in-name"><%= patient.name %></p></a>
-            <button class="check-in-button" id="<%= patient._id %>">Check in</button><br>
-          <% }) %>
-        <% } %>
-
-        <h3>Needs Notes:</h3>
-          <% if (allNeedNotes) { %>
-            <% allNeedNotes.forEach(function(patient){ %>
-              <a href="/patient/<%=patient._id%>" ><p class="add-note-name"><%= patient.name %></p></a>
-              <button class="add-note-button" id="<%= patient._id %>">Add a Note</button><br>
+        <div id="appointment-column">
+          <h2 id="appt-header">Appointments:</h2>
+          <h3 id="date-spot"></h3>
+          <button id="check-date">Check Another Date</button>
+          <% if (patientObject) { %>
+            <% patientObject.forEach(function(patient){ %>
+              <div class="appt-patient">
+                <a href="/patient/<%=patient._id%>" ><p class="check-in-name"><%= patient.name %></p></a>
+                <button class="check-in-button" id="<%= patient._id %>">Check in</button><br>
+              </div>
             <% }) %>
           <% } %>
         </div>
+        <div id="notes-column">
+        <h2>Needs Notes:</h2>
+        <div id="spaceholder"></div>
+          <% if (allNeedNotes) { %>
+            <% allNeedNotes.forEach(function(patient){ %>
+              <div class="notes-patient">
+                <a href="/patient/<%=patient._id%>" ><p class="add-note-name"><%= patient.name %></p></a>
+                <button class="add-note-button" id="<%= patient._id %>">Add a Note</button><br>
+              </div>
+            <% }) %>
+          <% } %>
+        </div>
+      </div>
         <div class="notes-modal">
           <div class="notes-modal-content">
             <span class="notes-close">x</span>
-            <h3>Add note:</h3>
+            <h2>Add note:</h2>
             <form class="notes-form" action="" method="">
               <label for="">Notes:</label>
               <input id="note-box" type="text" name="add-note">
               <input id="notes-submit" type="submit" value="Add Note to Chart">
             </form>
-          </div>
-        </div>
-        <div class="search-modal">
-          <div class="search-modal-content">
-            <span class="search-close">x</span>
           </div>
         </div>
     <% } %>

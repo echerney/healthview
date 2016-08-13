@@ -1,16 +1,197 @@
 body {
-  background-color: azure;
-  text-align: center;
+  background-color: powderblue;
   font-family: helvetica;
+  margin: 0;
+  font-family: 'Arimo';
+  color: rgb(50,50,50);
+}
+
+h1 {
+  text-align: center;
+}
+
+button {
+  padding:5px 15px;
+  background: rgb(180,180,180);
+  border:0 none;
+  cursor:pointer;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  font-size: 12px;
+}
+
+input[type=submit] {
+  padding:5px 15px;
+  background:rgb(180,180,180);
+  border:0 none;
+  cursor:pointer;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  font-size: 12px;
+}
+
+
+
+a {
+  color: rgb(40,40,40);
+  text-decoration:none;
+}
+/* USERBAR PARTIAL */
+.userbar {
+  display: block;
+  background-color: rgba(0,0,0,0.1);
+  height: 35px;
+  width: 100%;
+}
+
+#search-form {
+  display: inline;
+  position: absolute;
+  right: 211px;
+}
+
+#patient-search {
+  position: relative;
+  display: inline-block;
+  font-size:11px;
+  padding: 4px;
+  top: 6px;
+  width: 140px;
+}
+
+#search-button {
+  display: inline-block;
+  position: relative;
+  top: 7px;
+}
+
+#home-icon {
+  display: inline-flex;
+  margin: 0 5px;
+  font-size: 29px;
+  text-decoration: none;
+  color: black;
+}
+
+#logout-button {
+  display: inline-block;
+  right: 10px;
+  position: absolute;
+  margin: 7px 0;
+}
+
+#data-button {
+  display: inline-block;
+  position: absolute;
+  top: 7px;
+  right: 87px;
+}
+
+/*notes modal stuff*/
+.notes-modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+.notes-modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+.notes-close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
 }
 
 /*HOME PAGE*/
-.hide-user {
-  display:none;
+
+.main-container {
+  margin-left:1px;
+  position: relative;
 }
 
-.userbar{
-  display:inline;
+#appointment-column {
+  text-align: center;
+  display:inline-block;
+  width: 50%;
+  position: absolute;
+  left: 0;
+}
+
+#appt-header {
+  margin: 20px auto 0;
+}
+
+#date-spot {
+  display: inline-block;
+  margin: 10px;
+}
+
+#check-date {
+  position: absolute;
+  margin: 9px 6px;
+}
+
+.appt-patient {
+  height: 50px;
+  border: 1px solid rgb(110,110,110);
+  border-left: none;
+  margin-top: -1px;
+  background-color: rgba(0,0,0,0.1);
+}
+
+.check-in-name {
+  display: inline-block;
+  left: 0px;
+  margin: 15px;
+}
+
+.check-in-button {
+  display: block;
+  position: absolute;
+  right:0;
+  margin: 15px;
+}
+
+#notes-column {
+  text-align: center;
+  display:inline-block;
+  width: 50%;
+  position: absolute;
+  right: 1px;
+}
+
+#spaceholder {
+  height:22px;
+}
+
+.notes-patient {
+  height: 50px;
+  border: 1px solid rgb(110,110,110);
+  border-right: none;
+  margin-top:-1px;
+  background-color: rgba(0,0,0,0.1);
+}
+
+.add-note-button {
+  display: block;
+  position: absolute;
+  right:0;
+  margin: 15px;
+}
+
+.hide-user {
+  display:none;
 }
 
 .check-in-name {
@@ -34,96 +215,56 @@ body {
   margin: 20px auto;
 }
 
-/*SCHEDULE MODAL*/
 
-/* The Modal (background) */
-.schedule-modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
-
-/* Modal Content/Box */
-.schedule-modal-content {
-    background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
-}
-
-
-/* The Close Button */
-.schedule-close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.notes-modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
-
-/* Modal Content/Box */
-.notes-modal-content {
-    background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
-}
-
-
-/* The Close Button */
-.notes-close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
+/*search modal stuff*/
 .search-modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
+    display: none;
+    position: fixed;
+    z-index: 1;
     left: 0;
     top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
 }
-
-/* Modal Content/Box */
 .search-modal-content {
     background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
+    margin: 15% auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
+    width: 80%;
+}
+.search-close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
 }
 
 
-/* The Close Button */
-.search-close {
+/* PATIENT VIEW PAGE */
+
+/*schedule modal stuff*/
+.schedule-modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+.schedule-modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+.schedule-close {
     color: #aaa;
     float: right;
     font-size: 28px;

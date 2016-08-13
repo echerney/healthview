@@ -7,7 +7,7 @@ $(document).ready(function() {
   let month = date.getMonth() + 1
   let day = date.getDate()
   let year = date.getFullYear()
-  $('h2').addClass('page-date').text(month + '/' + day + '/' + year)
+  $('#date-spot').addClass('page-date').text(month + '/' + day + '/' + year)
 
   $('#login-button').click(function() {
     $('.login-user').toggle();
@@ -24,9 +24,9 @@ $(document).ready(function() {
   })
 
   //form to search
-  $('#searchForm').submit(function(e) {
+  $('#search-form').submit(function(e) {
     e.preventDefault()
-    let name = $('#patientSearch').val()
+    let name = $('#patient-search').val()
     console.log(name)
     $.ajax({
       url: '/patient/search',
@@ -45,6 +45,10 @@ $(document).ready(function() {
     })
   })
 
+  $('.search-close').click(function() {
+      $('.search-modal').hide()
+    })
+
   //check in patient
   $('.check-in-button').click(function() {
     let patientID = $(this).attr('id')
@@ -59,7 +63,7 @@ $(document).ready(function() {
       },
     })
     .done(function(results) {
-      document.location.reload(true);
+      setTimeout(document.location.reload(true), 20);
     })
     .fail(function(a, b) {
       console.log('a', a);
@@ -81,8 +85,7 @@ $(document).ready(function() {
       },
     })
     .done(function(results) {
-      console.log('the note was added!')
-      console.log(results);
+      setTimeout(document.location.reload(true), 20);
     })
     .fail(function(a, b) {
       console.log('a', a);
@@ -132,7 +135,7 @@ $(document).ready(function() {
       console.log(err);
     })
     .done(function() {
-      document.location.reload(true);
+      document.location.replace('/');
     })
   })
 

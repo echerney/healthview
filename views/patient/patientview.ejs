@@ -4,6 +4,7 @@
 <% include ../partials/head %>
 </head>
 <body>
+  <% include ../partials/userbar %>
   <p>Name: <%= patientInfo.name %></p>
   <p>Phone: <%= patientInfo.phone %></p>
   <p>Diagnosis: <%= patientInfo.diagnosis %></p>
@@ -23,7 +24,7 @@
       <form id="schedule-form" action="" method="">
         <label for="">Date:</label>
         <input id="schedule-date" type="text" name="appointment">
-        <input type="submit" value="Make an Appointment">
+        <input type="submit" class="button" value="Make an Appointment">
       </form>
     </div>
   </div>

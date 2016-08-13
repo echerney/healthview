@@ -15,7 +15,7 @@ router.get('/search', searchPatients, function(req,res) {
 // })
 
 router.put('/addnote', addNote, function(req, res) {
-  res.send('note added', {user: req.session.user})
+  res.json({note: 'note added', user: req.session.user})
 }, errorHandler)
 
 router.get('/new', function(req,res) {
@@ -35,7 +35,7 @@ router.get('/:id', findPatient, function(req,res) {
 }, errorHandler)
 
 router.put('/:id', addAppointment, function(req,res) {
-  res.send('complete');
+  res.send('appointment added');
 }, errorHandler)
 
 module.exports = router;
