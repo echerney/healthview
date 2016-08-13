@@ -17,6 +17,11 @@
           <h2 id="appt-header">Appointments:</h2>
           <h3 id="date-spot"></h3>
           <button id="check-date">Check Another Date</button>
+          <form id="date-search-form">
+            <input id="date-input" type="text" name="date-search">
+            <input id="date-submit" type="submit" name="Check date">
+          </form>
+          <span id="date-search-close">x</span>
           <% if (patientObject) { %>
             <% patientObject.forEach(function(patient){ %>
               <div class="appt-patient">
@@ -48,6 +53,12 @@
               <input id="note-box" type="text" name="add-note">
               <input id="notes-submit" type="submit" value="Add Note to Chart">
             </form>
+          </div>
+        </div>
+        <div class="date-modal">
+          <div class="date-modal-content">
+            <span class="date-close">x</span>
+            <h2>Appointments:</h2>
           </div>
         </div>
     <% } %>

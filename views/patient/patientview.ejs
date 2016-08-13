@@ -5,18 +5,25 @@
 </head>
 <body>
   <% include ../partials/userbar %>
-  <p>Name: <%= patientInfo.name %></p>
-  <p>Phone: <%= patientInfo.phone %></p>
-  <p>Diagnosis: <%= patientInfo.diagnosis %></p>
-  <p>Appointments:</p>
+  <div class="patient-column">
+  <h2>Patient Information</h2>
+  <h3>Name: <%= patientInfo.name %></h3>
+  <h3>Phone: <%= patientInfo.phone %></h3>
+  <h3>Diagnosis: <%= patientInfo.diagnosis %></h3>
+  <h3>Appointments:</h3>
+  <button id="schedule-button">Schedule an Appointment</button>
   <% if (patientInfo.appointments) {patientInfo.appointments.forEach(function(appt){ %>
     <p><%= appt %></p>
   <% })} %>
-  <p>Notes:</p>
+  </div>
+  <div class="notes-column">
+  <h3>Notes:</h3>
   <% if (patientInfo.notes) {patientInfo.notes.forEach(function(note){ %>
-    <p><%= note %></p>
+    <div class="note-box">
+      <p><%= note %></p>
+    </div>
   <% })} %>
-  <button id="schedule-button">Schedule an Appointment</button>
+  </div>
   <div class="schedule-modal">
     <div class="schedule-modal-content">
       <span class="schedule-close">x</span>

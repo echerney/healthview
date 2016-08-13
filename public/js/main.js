@@ -49,6 +49,45 @@ $(document).ready(function() {
       $('.search-modal').hide()
     })
 
+  //search date
+  $('#check-date').click(function() {
+    $('#check-date').hide()
+    $('#date-spot').hide()
+    $('#date-search-close').show()
+    $('#date-search-form').show()
+  })
+
+  $('#date-search-close').click(function() {
+    $('#check-date').show()
+    $('#date-spot').show()
+    $('#date-search-close').hide()
+    $('#date-search-form').hide()
+  })
+
+$('#date-search-form').submit(function(e) {
+  e.preventDefault();
+  $.ajax({
+    url: '/searchday',
+    type: 'GET',
+    dataType: 'json',
+    data:
+    {date: $('.date-input').val()},
+  })
+  .done(function(results) {
+    console.log(results);
+    let appointments = results
+    popDateModal(appointments)
+  })
+  .fail(function(a,b) {
+    console.log('a',a);
+    console.log('b',b);
+  })
+})
+
+  $('.date-close').click(function() {
+      $('.date-modal').hide()
+  })
+
   //check in patient
   $('.check-in-button').click(function() {
     let patientID = $(this).attr('id')
@@ -143,9 +182,16 @@ $(document).ready(function() {
 
 function popSearchModal(pArray) {
   $('.search-modal').show()
-  pArray.forEach(function(patient){
-    let nameLink ='<a href="/patient/' + patient._id + '"><p class="search-name">' + patient.name + '</p></a>';
-    $('.search-modal-content').append(nameLink);
+    pArray.forEach(function(patient){
+      let nameLink ='<a href="/patient/' + patient._id + '"><p class="search-name">' + patient.name + '</p></a>';
+      $('.search-modal-content').append(nameLink);
+    })
+  }
+
+function popDateModal(dArray) {
+  $('.date-modal').show()
+  dArray.forEach(function(patient) {
+    console.log(patient.searchedAppts)
   })
 }
 

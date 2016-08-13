@@ -152,4 +152,25 @@ function addNote(req, res, next) {
   }
 }
 
-module.exports = { createPatient, getAppointments, findPatient, searchPatients, addAppointment, checkPatientIn, getAllNeedNotes, addNote }
+function searchAppointments(req,res,next) {
+  if (!req.session.user) {
+    console.log('yo, gotta log in!')
+    next();
+  } else {
+    const practitioner = req.session.user.name;
+    const date = req.body.date;
+    console.log('date input', req.body.date)
+    MongoClient.connect(dbConnection, function(err,db) {
+      db.collection('patients')
+      .find({practitioner: practitioner, appointments: date})
+      .toArray(function(err,data){
+        if (err) throw err
+        res.searchedAppts = data
+        console.log(res.searchedAppts)
+        next();
+      })
+    })
+  }
+}
+
+module.exports = { createPatient, getAppointments, findPatient, searchPatients, addAppointment, checkPatientIn, getAllNeedNotes, addNote, searchAppointments }

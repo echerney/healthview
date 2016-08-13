@@ -137,6 +137,28 @@ a {
   margin: 10px;
 }
 
+#date-input {
+  height: 20px;
+  width: 140px;
+}
+
+#date-search-form {
+  position: relative;
+  display: none;
+  margin: 8.5px;
+}
+
+#date-search-close {
+  position: absolute;
+  display: none;
+  float: left;
+  margin-top: -40px;
+  left: 400px;
+  color: #aaa;
+  font-size: 28px;
+  font-weight: bold;
+}
+
 #check-date {
   position: absolute;
   margin: 9px 6px;
@@ -242,8 +264,58 @@ a {
     font-weight: bold;
 }
 
+/* date search modal stuff */
+.date-modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+.date-modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+.date-close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
 
 /* PATIENT VIEW PAGE */
+
+.patient-column {
+  text-align: center;
+  width: 60%;
+  position: absolute;
+  display: inline;
+  left: 0;
+}
+
+.notes-column {
+  text-align: center;
+  width: 40%;
+  position: absolute;
+  display: inline;
+  right: 0;
+}
+
+.note-box {
+  border: 0.5px solid rgb(110,110,110);
+  padding: 5px;
+  margin: 0 15px;
+  background-color: rgba(0,0,0,0.1);
+  margin-top: -.5px;
+}
 
 /*schedule modal stuff*/
 .schedule-modal {
