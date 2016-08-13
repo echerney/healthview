@@ -10,17 +10,17 @@ $(document).ready(function() {
   $('#date-spot').addClass('page-date').text(month + '/' + day + '/' + year)
 
   $('#login-button').click(function() {
-    $('.login-user').toggle();
-    $('#login-button').toggle();
+    $('.login-user').fadeIn();
+    $('#login-button').hide();
     $('.create-user').hide();
-    $('#create-button').show()
+    $('#create-button').fadeIn()
   })
 
   $('#create-button').click(function() {
-    $('.create-user').toggle();
-    $('#create-button').toggle();
+    $('.create-user').fadeIn();
+    $('#create-button').hide();
     $('.login-user').hide()
-    $('#login-button').show()
+    $('#login-button').fadeIn()
   })
 
   //form to search
@@ -53,13 +53,13 @@ $(document).ready(function() {
   $('#check-date').click(function() {
     $('#check-date').hide()
     $('#date-spot').hide()
-    $('#date-search-close').show()
-    $('#date-search-form').show()
+    $('#date-search-close').fadeIn()
+    $('#date-search-form').fadeIn()
   })
 
   $('#date-search-close').click(function() {
-    $('#check-date').show()
-    $('#date-spot').show()
+    $('#check-date').fadeIn()
+    $('#date-spot').fadeIn()
     $('#date-search-close').hide()
     $('#date-search-form').hide()
   })

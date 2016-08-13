@@ -1,22 +1,22 @@
 <div>
 <% if(!user) { %>
       <button id="login-button">Login</button>
-      <form action="/user/login" method='post'>
-        <label class="login-user hide-user" for="">Email:</label>
-        <input class="login-user hide-user" type="text" name='email'>
-        <label class="login-user hide-user" for="">Password:</label>
-        <input class="login-user hide-user" type="password" name='password'>
-        <input class="login-user hide-user button" type="submit" value='Login'>
+      <form action="/user/login" class="login-user-form" method='post'>
+        <label class="login-user hide-user first-form" for="">Email:</label>
+        <input class="login-user hide-user first-form" type="text" name='email'><br>
+        <label class="login-user hide-user first-form" for="">Password:</label>
+        <input class="login-user hide-user first-form" type="password" name='password'><br>
+        <input class="login-user hide-user first-form" type="submit" value='Login'>
       </form>
       <button id="create-button">Create User</button>
-      <form action="/user/new" method='post'>
-        <label class="create-user hide-user" for="">Name:</label>
-        <input class="create-user hide-user" type="text" name='name'>
-        <label class="create-user hide-user" for="">Email:</label>
-        <input class="create-user hide-user" type="text" name='email'>
-        <label class="create-user hide-user" for="">Password:</label>
-        <input class="create-user hide-user" type="password" name='password'>
-        <input class="create-user hide-user button" type="submit" value='Create'>
+      <form action="/user/new" class="create-user-form first-form" method='post'>
+        <label class="create-user hide-user first-form" for="">Name:</label>
+        <input class="create-user hide-user first-form" type="text" name='name'><br>
+        <label class="create-user hide-user first-form" for="">Email:</label>
+        <input class="create-user hide-user first-form" type="text" name='email'><br>
+        <label class="create-user hide-user first-form" for="">Password:</label>
+        <input class="create-user hide-user first-form" type="password" name='password'><br>
+        <input class="create-user hide-user first-form" type="submit" value='Create'>
       </form>
   <% } %>
 </div>

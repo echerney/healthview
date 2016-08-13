@@ -36,6 +36,38 @@ a {
   color: rgb(40,40,40);
   text-decoration:none;
 }
+
+
+/*LOGIN PARTIAL */
+
+.first-form {
+  margin-top: 3px;
+}
+
+.login-user-form {
+  margin: 10px 0;
+  text-align: center;
+}
+
+.create-user-form {
+  margin: 10px 0;
+  text-align: center;
+}
+
+#login-button {
+  position: absolute;
+  left: 45%;
+  width: 100px;
+  margin: 10px 0;
+}
+
+#create-button {
+  position: absolute;
+  left: 45%;
+  width: 100px;
+  margin: 10px 0;
+}
+
 /* USERBAR PARTIAL */
 .userbar {
   display: block;
@@ -114,6 +146,11 @@ a {
 }
 
 /*HOME PAGE*/
+
+#intro {
+  text-align: center;
+  margin: 40px;
+}
 
 .main-container {
   margin-left:1px;
