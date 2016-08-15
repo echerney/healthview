@@ -178,6 +178,12 @@ $('#date-search-form').submit(function(e) {
     })
   })
 
+  //DATA PAGE
+
+  //populate dropdown
+
+
+
 });
 
 function popSearchModal(pArray) {

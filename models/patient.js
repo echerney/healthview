@@ -15,7 +15,8 @@ function createPatient(req, res, next) {
       appointments: [],
       notes: []
     }
-    db.collection('patients').insertOne(patientInfo, function(err,result) {
+    db.collection('patients').insertOne(patientInfo,
+      function(err,result) {
       if (err) throw err;
       console.log(result)
       next()
@@ -173,4 +174,4 @@ function searchAppointments(req,res,next) {
   }
 }
 
-module.exports = { createPatient, getAppointments, findPatient, searchPatients, addAppointment, checkPatientIn, getAllNeedNotes, addNote, searchAppointments }
+module.exports = { createPatient, getAppointments, findPatient, searchPatients, addAppointment, checkPatientIn, getAllNeedNotes, addNote, searchAppointments}

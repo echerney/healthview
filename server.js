@@ -12,6 +12,7 @@ const port            = process.env.PORT || 3000;
 const homeRoute       = require('./routes/home')
 const userRoute       = require('./routes/users')
 const patientRoute    = require('./routes/patients')
+const dataRoute       = require ('./routes/data')
 
 app.use(session({
   saveUninitialized: true,
@@ -36,4 +37,5 @@ app.listen(port, function(){
 //ROUTES
 app.use('/', homeRoute);
 app.use('/user', userRoute);
-app.use('/patient', patientRoute)
+app.use('/patient', patientRoute);
+app.use('/data', dataRoute)
