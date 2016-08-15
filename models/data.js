@@ -8,11 +8,19 @@ function getData(req, res, next) {
     next();
   } else {
     const practitioner = req.session.user.name;
+    const diagnosis = req.body
     console.log('practitioner', practitioner)
+    console.log('body',diagnosis)
     MongoClient.connect(dbConnection, function(err,db) {
       db.collection('patients')
       .find({practioner: practitioner, diagnosis: diagnosis})
-    }
+      .toArray(function(err, data){
+        if (err) throw err
+        res.chartData = data
+        console.log(res.chartData)
+        next();
+      });
+    })
   }
 };
 

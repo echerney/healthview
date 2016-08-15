@@ -1,7 +1,7 @@
 const router  = require('express').Router();
 const { getData, popDropdown } = require('../models/data');
 
-router.get('/',  popDropdown, function(req,res) {
+router.get('/', popDropdown, function(req,res) {
   res.render('data/index', {user: req.session.user, diagnoses: res.diagnoses})
 });
 

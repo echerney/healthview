@@ -160,7 +160,7 @@ function searchAppointments(req,res,next) {
   } else {
     const practitioner = req.session.user.name;
     const date = req.body.date;
-    console.log('date input', req.body.date)
+    console.log('date input', req.body)
     MongoClient.connect(dbConnection, function(err,db) {
       db.collection('patients')
       .find({practitioner: practitioner, appointments: date})

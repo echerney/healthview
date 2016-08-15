@@ -66,12 +66,14 @@ $(document).ready(function() {
 
 $('#date-search-form').submit(function(e) {
   e.preventDefault();
+  let date = $('#date-input').val()
+  console.log(date)
   $.ajax({
     url: '/searchday',
     type: 'GET',
     dataType: 'json',
     data:
-    {date: $('.date-input').val()},
+    {date: date},
   })
   .done(function(results) {
     console.log(results);
@@ -177,11 +179,6 @@ $('#date-search-form').submit(function(e) {
       document.location.replace('/');
     })
   })
-
-  //DATA PAGE
-
-  //populate dropdown
-
 
 
 });

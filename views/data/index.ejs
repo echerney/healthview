@@ -16,12 +16,15 @@
         </select>
         <canvas id="myChart" width="400" height="400"></canvas>
         <script>
+          function getChart(e){
+            e.preventDefault();
             let diagnosis = $('#diagnosis-select').val()
+            console.log(diagnosis)
             $.ajax({
               url: '/data/dataquery',
               type: 'GET',
-              dataType: 'json',
               data: {diagnosis: diagnosis},
+              dataType: "json",
             })
             .done(function(results) {
               console.log('ajax in script', results);
@@ -29,22 +32,28 @@
             .fail(function() {
               console.log("error");
             })
+          }
+
+          $('#diagnosis-select').change(getChart)
 
         var ctx = document.getElementById("myChart");
         var myChart = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+                labels: ["Asian", "Black", "Caribbean", "Hispanic", "Native American", "Middle Eastern", "Pacific Islander", "White", "Mixed Race"],
                 datasets: [{
                     label: '# of Votes',
-                    data: [12, 19, 3, 5, 2, 3],
+                    data: [12, 9, 3, 5, 2, 3, 6, 4, 5],
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(54, 162, 235, 0.2)',
                         'rgba(255, 206, 86, 0.2)',
                         'rgba(75, 192, 192, 0.2)',
                         'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
+                        'rgba(255, 159, 64, 0.2)',
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)'
                     ],
                     borderColor: [
                         'rgba(255,99,132,1)',
@@ -52,7 +61,10 @@
                         'rgba(255, 206, 86, 1)',
                         'rgba(75, 192, 192, 1)',
                         'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
+                        'rgba(255, 159, 64, 1)',
+                        'rgba(255,99,132,1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)'
                     ],
                     borderWidth: 1
                 }]
