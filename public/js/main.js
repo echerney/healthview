@@ -36,7 +36,6 @@ $(document).ready(function() {
     })
     .done(function(results) {
       console.log(results);
-      console.log('end of the ajax call')
       let patients = results.patients
       popSearchModal(patients);
     })
@@ -162,9 +161,7 @@ $('#date-search-form').submit(function(e) {
   $('#schedule-form').submit(function(e) {
     e.preventDefault()
     let param = location.pathname.split('/')[2]
-    console.log(param)
     let date = $('#schedule-date').val()
-    console.log(date)
     $.ajax({
       url: '/patient/' + param,
       type: 'PUT',

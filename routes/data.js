@@ -6,7 +6,7 @@ router.get('/', popDropdown, function(req,res) {
 });
 
 router.get('/dataquery', getData, function(req,res) {
-  res.send('1, 2, 3, 4, 5')
+  res.send('1, 2, 3, 4, 5, 6')
 });
 
 module.exports = router;
