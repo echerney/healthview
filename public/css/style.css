@@ -1,5 +1,5 @@
 body {
-  background-color: powderblue;
+  background-color: rgb(238,250,250);
   font-family: helvetica;
   margin: 0;
   font-family: 'Arimo';
@@ -145,6 +145,11 @@ a {
     font-weight: bold;
 }
 
+#note-box {
+  height: 300px;
+  width: 300px;
+}
+
 /*HOME PAGE*/
 
 #intro {
@@ -175,7 +180,7 @@ a {
 }
 
 #date-input {
-  height: 20px;
+  height: 19px;
   width: 140px;
 }
 
@@ -190,7 +195,7 @@ a {
   display: none;
   float: left;
   margin-top: -40px;
-  left: 400px;
+  left: 435px;
   color: #aaa;
   font-size: 28px;
   font-weight: bold;
