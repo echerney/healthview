@@ -20,6 +20,6 @@ As a user I should be able to see visual data showing me trends of diagnosis rel
 <img src="https://github.com/echerney/healthview/blob/master/Screen%20Shot%202016-08-05%20at%209.51.54%20AM.png?raw=true">
 
 ##Attribution
-<a href="https://fonts.google.com/specimen/Arimo?query=ari">Google fonts</a>
-<a href="http://www.chartjs.org/">Chart.js</a>
-Fizal as a rubber duck
+<a href="https://fonts.google.com/specimen/Arimo?query=ari">Google fonts</a><br>
+<a href="http://www.chartjs.org/">Chart.js</a><br>
+Fizal as a rubber duck<br>
